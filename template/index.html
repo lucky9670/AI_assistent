@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'schema-swagger-ui' %}">API Docs</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="pt-4 pb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h3 class="mt-4">Introduction of Project:</h3>
+                    <ul>
+                        <li>We have implemented here Django project with token based Authentication. We have use Python programming Language and Django and Django rest Framework for API development.</li>
+                        <li>We have documented All APIs and also making all APIs CRUD operations. Due to lacking of knowlegde of AI and ML we have use DB data and perform on it and do not use any trained model of ML</li>
+                    </ul>
+                    <h3 class="mt-4">Project Setup and run in local or Docker:</h3>
+                    <ul>
+                        <li>First we need to install python. And make virtualenv due to avoid to install deendencies in globle and run command but insure you have in project Directory and env is activated <strong>pip install -r requirements.txt</strong></li>
+                        <li>When all dependancy install then migrate it for build DB and create and changes of migrations in databse. To migrate the project we need to run command <strong>python manage.py migrate</strong> I have send all migration file that's why no need to apply migration if need then first run <strong>python manage.py makemigrations</strong> after migrate the project.</li>
+                        <li>When everything done then run cmd <strong>python manage.py runserver</strong> to run project.</li>
+                        <li>I have build docker file and docker compose file.</li>
+                        <li>If want to run this project on docker then we need to first install Docker CLI in aur local system. When docker is installed then firs we need to build build image in docker. To building of image we need to run docker-compose.yml file.</li>
+                        <li>To run this file we need to run command <strong>docker-compose up</strong></li>
+                        <li>If you want to run it in detached mode (in the background), you can use the -d flag: <strong>docker-compose up -d</strong></li>
+                        <li>When all dependancy installed in conatiner then project going to run and check on <strong>localhost:8000</strong></li>
+                        <li>If done any local change then we need to run cmd <strong>docker-compose up --build</strong> Like any migration or any settings changes.</li>
+                    </ul>
+
+                    <h3 class="mt-4">CI/CD Pipeline:</h3>
+                    <ul>
+                        <li>We have not much knowlegde about CI/CD but untill we have automate the one project on Heroku using CI/CD pipeline. On the basis of it we have make GitHub Action file with deploy and test a project on AWS. File location '.github/workflows/ci-cd.yml'</li>
+                        <li>We have tested this pipeline on Heroku and and work good. Also make Procfile for depoying this project on Heroku</li>
+                    </ul>
+
+                    <h3 class="mt-4">Project Repo :</h3>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
