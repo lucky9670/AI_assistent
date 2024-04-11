@@ -1,0 +1,1 @@
+web: waitress-serve --port=$PORT Ai_assistent.wsgi:application

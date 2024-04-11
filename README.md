@@ -74,3 +74,17 @@ For pipeline we use GitHub Actions and also configure all things which have give
 ```javascript
     .github/workflows/ci-cd.yml
 ```
+### How to use 
+First we need to registered yourself as a user in for hitting register API 
+![alt text](image.png)
+then hit login API with same credential which have registered and get response in response you see a token. Now copy this token and authenticate using it like
+![alt text](image-1.png)
+![alt text](image-2.png)
+Now paste this token on here and then authenticate
+```javascript
+    token <paste_token>
+```
+##### e.g.
+```javascript
+    token sdjfhzsjkghdsgsldgfjkghdfjkgsdhgjsdhggjghjdgl,
+```
