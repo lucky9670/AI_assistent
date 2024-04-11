@@ -36,7 +36,7 @@ If you make any changes to project code or Docker configuration files and want t
 docker-compose up --build
 ```
 
-### Deploy this project on heroku we nedd follow the instruction given below
+### Deploy this project on heroku we need follow the instruction given below
 1. Create Heroku Account : https://www.heroku.com/
 2. Download and Install Git : https://git-scm.com/downloads
 3. Download and Install Heroku CLI : https://devcenter.heroku.com/articles/heroku-cli#download-and-install
@@ -72,5 +72,5 @@ docker-compose up --build
 ### For CI/CD pipeline
 For pipeline we use GitHub Actions and also configure all things which have give in task on this file to use it we need to update the configuration with the server keys and configure on Server then it will works and this file is present on 
 ```javascript
-      .github/workflows/ci-cd.yml
-    ```
+    .github/workflows/ci-cd.yml
+```
