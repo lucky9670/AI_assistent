@@ -4,7 +4,6 @@ from rest_framework.generics import GenericAPIView
 from rest_framework import permissions, viewsets
 from knox.models import AuthToken
 from .models import User, Activity
-from django.http import JsonResponse
 from drf_yasg.utils import swagger_auto_schema
 from .serialization import *
 from knox.auth import TokenAuthentication
@@ -157,5 +156,51 @@ class RecomendationView(viewsets.ViewSet):
         print(activity)
         serializer = ActivitySerializer(activity, many=True)  # Pass many=True to serialize a queryset
         return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(ActivitySerializer(activity).data, status=status.HTTP_200_OK)
 
+class ScheduleTaskView(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = ScheduleTaskSerial
+
+    
+    def get_queryset(self):
+        return ScheduleTask.objects.all()
+
+
+class GetUsersAssignTask(viewsets.ViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    parser_classes = (MultiPartParser,)
+
+    @swagger_auto_schema(tags=['Get User Schedule Task'])
+    def list(self, request, *args, **kwargs):
+        day = request.GET.get('day')
+        user = request.user
+        if day:
+            user_schedule_task = ScheduleTask.objects.filter(user=user, is_completed = False, schedule_day=day)
+            serializer = ScheduleTaskSerial(user_schedule_task, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        user_schedule_task = ScheduleTask.objects.filter(user=user, is_completed = False)
+        serializer = ScheduleTaskSerial(user_schedule_task, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+from rest_framework.decorators import action
+from django.http import JsonResponse
+import json
+from django.core import serializers
+@action(methods=['POST'], detail=False)
+def executeTask(request, id):
+    task = ScheduleTask.objects.get(id = id)
+    if not task.is_completed:
+        task.is_completed = True
+        task.save()
+
+        data = {
+            "schedule_day": task.schedule_day,
+            "is_completed": task.is_completed,
+            "task": task.task.id,
+            "user": task.user.id
+        }
+        return JsonResponse(data)
+    return JsonResponse({"message": "Task completed already"})

@@ -49,3 +49,9 @@ class Reminder(models.Model):
 class Activity(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
+
+class ScheduleTask(models.Model):
+    schedule_day = models.DateField()
+    is_completed = models.BooleanField(default=False)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

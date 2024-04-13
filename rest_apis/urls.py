@@ -14,6 +14,9 @@ reminder_router.register(r'reminder', ReminderViewSet, basename='reminder')
 activity_router = DefaultRouter()
 activity_router.register(r'activity', ActivityView, basename='activity')
 
+schedule_task_router = DefaultRouter()
+schedule_task_router.register(r'schedule_task', ScheduleTaskView, basename='schedule_task')
+
 urlpatterns = [
     path('', index, name='index'),
     path('v1/api/register', RegisterAPI.as_view(), name='register'),
@@ -25,4 +28,7 @@ urlpatterns = [
     re_path(r'^api/v1/', include(reminder_router.urls)),
     re_path(r'^api/v1/', include(activity_router.urls)),
     path('v1/api/recomandation', RecomendationView.as_view({'get': 'list'}), name='recomendation'),
+    re_path(r'^api/v1/', include(schedule_task_router.urls)),
+    path('v1/api/schedule_task', GetUsersAssignTask.as_view({'get': 'list'}), name='schedule_task'),
+    path('api/v1/tasks/<int:id>/execute', executeTask, name='schedule_task'),
 ]

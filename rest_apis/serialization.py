@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import Group
-from rest_apis.models import User
+from rest_apis.models import User, ScheduleTask
 
 class RegisterSerialization(serializers.Serializer):
     phone = serializers.CharField(required = True)
@@ -36,3 +36,9 @@ class UserSerial(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id','first_name', 'last_name', 'username', 'email', 'phone', 'gender', 'age', 'image', "prefrence"]
+
+class ScheduleTaskSerial(serializers.ModelSerializer):
+
+    class Meta:
+        model = ScheduleTask
+        fields = '__all__'
